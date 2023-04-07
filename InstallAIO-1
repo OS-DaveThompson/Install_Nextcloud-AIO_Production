@@ -1,0 +1,12 @@
+echo
+echo
+echo
+echo "Installing Apache2 via APT"
+apt install apache2 -y
+#
+ufw status
+ufw allow openssh
+ufw allow in "Apache Full"
+ufw enable
+ufw status
+#
