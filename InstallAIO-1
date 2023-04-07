@@ -1,12 +1,100 @@
+#!/.bin/bash
+
 echo
 echo
+echo "Installing Apache Webserver"
 echo
-echo "Installing Apache2 via APT"
-apt install apache2 -y
+apt install apache2
 #
+
+echo
+echo
+echo "Configuring Firewall"
+echo
 ufw status
 ufw allow openssh
 ufw allow in "Apache Full"
 ufw enable
 ufw status
 #
+
+echo
+echo
+echo "Finishing up with Apache"
+echo
+a2dismod mpm_event
+a2enmod mpm_prefork
+#
+systemctl restart apache2
+systemctl status apache2
+#
+
+echo
+echo
+echo "Installing MariaDB"
+echo
+apt install mariadb-server
+systemctl status mariadb
+systemctl enable mariadb
+echo
+echo
+echo "Do not switch socket authentication or change the root password"
+echo "Answer yes to the questions:"
+echo "Remove anonymous users?"
+echo "Dissallow root login remotely?"
+echo "Remove test database and access to it?"
+echo "Reload privilege tables now?"
+#
+mysql_secure_installation
+#
+
+echo "## Enter the following into the database program"
+echo "CREATE DATABASE nextcloud;"
+echo "SHOW DATABASES;"
+echo "GRANT ALL PRIVILEGES ON nextcloud.* TO 'nextcloud'@'localhost' IDENTIFIED BY '1UbUnTu!UbUnTu';"
+echo "FLUSH PRIVILEGES;"
+echo "quit"
+echo
+sudo mysql -u root
+
+
+apt install php
+php -v
+apt install php-apcu php-bcmath php-cli php-common php-curl php-gd php-gmp php-imagick php-intl php-mbstring php-
+mysql php-zip php-xml
+phpenmod bcmath gmp imagick intl
+apt install unzip
+apt install libmagickcore-6.q16-6-extra
+
+wget https://download.nextcloud.com/server/releases/nextcloud-24.0.1.zip
+unzip nextcloud-24.0.1.zip
+chown -R www-data:www-data nextcloud
+mv nextcloud /var/www/html
+a2dissite 000-default.conf
+echo Edit/Create this file: /etc/apache2/sites-available/nextcloud.conf"
+echo
+echo '<VirtualHost *:80>' > /etc/apache2/sites-available/nextcloud.conf
+echo '    DocumentRoot "/var/www/html/nextcloud"' >> /etc/apache2/sites-available/nextcloud.conf
+echo '    ServerName example.com' >> /etc/apache2/sites-available/nextcloud.conf
+echo '' >> /etc/apache2/sites-available/nextcloud.conf
+echo '    <Directory "/var/www/html/nextcloud/">' >> /etc/apache2/sites-available/nextcloud.conf
+echo '        Options MultiViews FollowSymlinks' >> /etc/apache2/sites-available/nextcloud.conf
+echo '        AllowOverride All' >> /etc/apache2/sites-available/nextcloud.conf
+echo '        Order allow,deny' >> /etc/apache2/sites-available/nextcloud.conf
+echo '        Allow from all' >> /etc/apache2/sites-available/nextcloud.conf
+echo '    </Directory>' >> /etc/apache2/sites-available/nextcloud.conf
+echo '' >> /etc/apache2/sites-available/nextcloud.conf
+echo '    TransferLog /var/log/apache2/nextcloud_access.log' >> /etc/apache2/sites-available/nextcloud.conf
+echo '    ErrorLog /var/log/apache2/nextcloud_error.log' >> /etc/apache2/sites-available/nextcloud.conf
+echo '' >> /etc/apache2/sites-available/nextcloud.conf
+echo '</VirtualHost>' >> /etc/apache2/sites-available/nextcloud.conf
+echo '' >>/etc/apache2/sites-available/nextcloud.conf
+
+a2ensite nextcloud.conf
+
+
+
+
+
+
+
