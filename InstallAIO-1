@@ -57,7 +57,6 @@ echo "quit"
 echo
 sudo mysql -u root
 
-
 apt install php
 php -v
 apt install php-apcu php-bcmath php-cli php-common php-curl php-gd php-gmp php-imagick php-intl php-mbstring php-
@@ -71,7 +70,7 @@ unzip nextcloud-24.0.1.zip
 chown -R www-data:www-data nextcloud
 mv nextcloud /var/www/html
 a2dissite 000-default.conf
-echo Edit/Create this file: /etc/apache2/sites-available/nextcloud.conf"
+echo 'Edit/Create this file: /etc/apache2/sites-available/nextcloud.conf'
 echo
 echo '<VirtualHost *:80>' > /etc/apache2/sites-available/nextcloud.conf
 echo '    DocumentRoot "/var/www/html/nextcloud"' >> /etc/apache2/sites-available/nextcloud.conf
