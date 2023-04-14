@@ -70,7 +70,7 @@ unzip nextcloud-24.0.1.zip
 chown -R www-data:www-data nextcloud
 mv nextcloud /var/www/html
 a2dissite 000-default.conf
-echo 'Edit/Create this file: /etc/apache2/sites-available/nextcloud.conf'
+echo 'The file: /etc/apache2/sites-available/nextcloud.conf will be populated.
 echo
 echo '<VirtualHost *:80>' > /etc/apache2/sites-available/nextcloud.conf
 echo '    DocumentRoot "/var/www/html/nextcloud"' >> /etc/apache2/sites-available/nextcloud.conf
@@ -90,6 +90,7 @@ echo '</VirtualHost>' >> /etc/apache2/sites-available/nextcloud.conf
 echo '' >>/etc/apache2/sites-available/nextcloud.conf
 
 a2ensite nextcloud.conf
+
 
 
 
