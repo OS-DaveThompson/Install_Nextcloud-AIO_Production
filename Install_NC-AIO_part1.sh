@@ -12,7 +12,7 @@ echo '###'
 echo '###   Adding new user os-dave with sudo privileges.'
 echo "###   Please enter password and sundry info when asked:"
 echo
-echo adduser os-dave -q
+adduser os-dave -q
 sudo usermod -aG sudo os-dave
 echo
 echo 'Now installing NC-AIO part 1'
