@@ -1,5 +1,9 @@
 #!/.bin/bash
 
+#sudo apt update
+#sudo apt upgrade -y
+#sudo adduser os-dave -q
+#sudo usermod -aG root os-dave
 echo
 echo
 echo "Installing Apache Webserver"
