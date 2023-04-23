@@ -15,7 +15,7 @@ ufw status
 ufw allow openssh
 ufw allow in "Apache Full"
 ufw enable
-ufw status
+# ufw status
 #
 
 echo
@@ -55,10 +55,10 @@ echo "GRANT ALL PRIVILEGES ON nextcloud.* TO 'nextcloud'@'localhost' IDENTIFIED 
 echo "FLUSH PRIVILEGES;"
 echo "quit"
 echo
-# sudo mysql -u root
+sudo mysql -u root
 
 a2ensite nextcloud.conf
-"
+
 
 
 
