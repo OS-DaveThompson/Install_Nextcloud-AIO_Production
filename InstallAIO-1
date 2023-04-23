@@ -1,9 +1,9 @@
 #!/.bin/bash
 
-#sudo apt update
-#sudo apt upgrade -y
-#sudo adduser os-dave -q
-#sudo usermod -aG root os-dave
+sudo apt update
+sudo apt upgrade -y
+sudo adduser os-dave -q
+sudo usermod -aG root os-dave
 echo
 echo
 echo "Installing Apache Webserver"
@@ -15,7 +15,7 @@ echo
 echo
 echo "Configuring Firewall"
 echo
-ufw status
+# ufw status
 ufw allow openssh
 ufw allow in "Apache Full"
 ufw enable
@@ -42,10 +42,12 @@ systemctl status mariadb
 systemctl enable mariadb
 echo
 echo
-echo "Do not switch socket authentication or change the root password"
-echo "Answer Yes to the following DB installation questions:"
-echo "1 Remove anonymous users?"
-echo "2 Dissallow root login remotely?"
+echo "Anser the following security questions thusly:
+echo "1 DO create root password and log it somewhere"
+echo "2 NO Switch socket authentication
+ecbi "3 NO Change the root password"
+echo "4 DO Remove anonymous users"
+echo "5 DO Dissallow root login remotely?"
 echo "3 Remove test database and access to it?"
 echo "4 Reload privilege tables now?"
 #
@@ -60,7 +62,6 @@ echo "FLUSH PRIVILEGES;"
 echo "quit"
 echo
 sudo mysql -u root
-
 #
 
 
