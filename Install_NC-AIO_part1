@@ -1,0 +1,87 @@
+#!/bin/bash
+
+sudo apt update
+sudo apt upgrade -y
+sudo adduser os-dave -q
+sudo usermod -aG root os-dave
+echo
+echo
+echo "Installing Apache Webserver"
+echo
+apt install apache2 -y
+#
+
+echo
+echo
+echo "Configuring Firewall"
+echo
+# ufw status
+ufw allow openssh
+ufw allow in "Apache Full"
+ufw enable
+# ufw status
+#
+
+echo
+echo
+echo "Finishing up with Apache"
+echo
+a2dismod mpm_event
+a2enmod mpm_prefork
+#
+systemctl restart apache2
+#systemctl status apache2
+#
+
+echo
+echo
+echo "Installing MariaDB"
+echo
+apt install mariadb-server -y
+systemctl status mariadb
+systemctl enable mariadb
+echo
+echo
+echo '###===---'
+echo '######======------'
+echo '############============------------'
+echo "MySQL Secure Installation is about to be run."
+echo "Answer the following security questions in this way:"
+echo '1 YES "Create root password" and log it somewhere'
+echo '2 NO to "Switch socket authentication"'
+ecbi '3 NO to "Change the root password"'
+echo '4 YES to "Remove anonymous users"'
+echo '5 YES to "Disallow root login remotely?"'
+echo '3 YES to "Remove test database and access to it?"'
+echo '4 YES to "Reload privilege tables now?"'
+echo '############============------------'
+echo '######======------'
+echo '###===---'
+echo
+echo
+#
+mysql_secure_installation
+#
+
+echo
+echo
+echo '###===---'
+echo '######======------'
+echo '############============------------'
+echo '###'
+echo '###   You are about to enter the MySQL command line interpreter.'
+echo "###   Enter the following lines"
+echo
+echo "CREATE DATABASE nextcloud;"
+echo "SHOW DATABASES;"
+echo "GRANT ALL PRIVILEGES ON nextcloud.* TO 'nextcloud'@'localhost' IDENTIFIED BY 'root-db-password';"
+echo "FLUSH PRIVILEGES;"
+echo "quit"
+echo
+echo '############============------------'
+echo '######======------'
+echo '###===---'
+echo
+echo
+sudo mysql -u root
+#
