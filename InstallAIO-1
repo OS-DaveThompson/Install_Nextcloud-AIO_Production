@@ -61,7 +61,7 @@ echo "quit"
 echo
 sudo mysql -u root
 
-a2ensite nextcloud.conf
+#
 
 
 
