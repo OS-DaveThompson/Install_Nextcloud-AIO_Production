@@ -1,4 +1,9 @@
 #!/bin/bash
+#
+# touch test.sh
+# chmod a+x test.sh
+# nano test.sh
+#
 echo
 echo 'Adding new user os-dave with sudo privileges.'
 echo
