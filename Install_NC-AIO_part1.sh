@@ -33,7 +33,7 @@ echo '###'
 echo '###   Now configuring Uncomplicated Firewall.'
 echo "###   Accept the risk of disconnection to proceed:"
 echo
-ufw allow openssh
+ufw allow OpenSSH
 ufw allow in "Apache Full"
 ufw enable
 #
@@ -45,14 +45,14 @@ a2dismod mpm_event
 a2enmod mpm_prefork
 #
 systemctl restart apache2
-#systemctl status apache2
+# systemctl status apache2
 #
 
 echo
 echo "Installing MariaDB"
 echo
 apt install mariadb-server -y
-systemctl status mariadb
+# systemctl status mariadb
 systemctl enable mariadb
 
 echo
