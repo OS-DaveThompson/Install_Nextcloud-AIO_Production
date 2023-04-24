@@ -1,5 +1,5 @@
 #!/bin/bash
-#
+# https://www.linode.com/docs/guides/how-to-install-nextcloud-on-ubuntu-22-04/
 # touch test.sh
 # chmod a+x test.sh
 # nano test.sh
