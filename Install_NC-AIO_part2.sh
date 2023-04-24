@@ -11,5 +11,3 @@ unzip nextcloud-24.0.1.zip
 chown -R www-data:www-data nextcloud
 mv nextcloud /var/www/html
 a2dissite 000-default.conf
-echo 'The file: /etc/apache2/sites-available/nextcloud.conf needs to be populated.'
-echo 'if it is not then run part 3.'
