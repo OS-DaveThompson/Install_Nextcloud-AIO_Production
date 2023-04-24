@@ -15,6 +15,7 @@ echo 'opcache.revalidate_freq=1'
 echo 'opcache.save_comments=1'
 echo
 echo 'After modifying php.ini, run the following:'
+echo
 echo 'a2enmod dir env headers mime rewrite ssl'
 echo 'systemctl restart apache2'
 echo 'systemctl status apache2'
