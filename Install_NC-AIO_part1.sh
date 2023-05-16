@@ -15,7 +15,7 @@ echo
 adduser os-dave -q
 sudo usermod -aG sudo os-dave
 echo
-echo 'Now installing NC-AIO part 1'
+echo 'Running Update/Upgrade cycle before installing NC-AIO'
 echo
 sudo apt update
 sudo apt upgrade -y                    #This will produce a LOT of output
@@ -24,7 +24,6 @@ echo "Installing Apache Webserver"
 echo
 apt install apache2 -y
 #
-
 echo
 echo '###===---'
 echo '######======------'
@@ -37,7 +36,6 @@ ufw allow OpenSSH
 ufw allow in "Apache Full"
 ufw enable
 #
-
 echo
 echo "Finishing up with Apache"
 echo
@@ -47,14 +45,13 @@ a2enmod mpm_prefork
 systemctl restart apache2
 # systemctl status apache2
 #
-
 echo
 echo "Installing MariaDB"
 echo
 apt install mariadb-server -y
 # systemctl status mariadb
 systemctl enable mariadb
-
+#
 echo
 echo '###===---'
 echo '######======------'
@@ -92,7 +89,7 @@ echo "CREATE DATABASE nextcloud;"
 echo "SHOW DATABASES;"
 echo "GRANT ALL PRIVILEGES ON nextcloud.* TO 'nextcloud'@'localhost' IDENTIFIED BY 'password from earlier';"
 echo "FLUSH PRIVILEGES;"
-echo "quit"
+echo "QUIT"
 echo
 echo '############============------------'
 echo '######======------'
